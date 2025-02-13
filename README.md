@@ -12,7 +12,9 @@ Welcome to my HTTP Server project! This project implements a basic HTTP server w
 
 ## Introduction
 
-This project is a simple HTTP server implemented in C. It accepts client connections, parses the incoming HTTP request, generates an HTTP response, and sends it back. The server can handle static file requests and return appropriate HTTP responses. It uses custom dynamic functions for request parsing and response generation.
+This project is a simple HTTP server implemented in C. It accepts client connections, parses the incoming HTTP request, generates an HTTP response, and sends it back. The server can handle static file requests and return appropriate HTTP responses. It uses custom dynamic functions for request parsing and response generation. 
+
+I created this project as a way to test and learn my security skills in code and network vulnerability.
 
 ## Features
 
