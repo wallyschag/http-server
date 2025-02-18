@@ -31,7 +31,7 @@ To compile and run the server, follow these steps:
   2. Navigate into the project directory:
     `cd http-server`
   3. Compile the project:
-    `gcc -o http-server src/main.c src/request-parser/request-parser.c src/response-generator/response-generator.c`
+    `make`
   4. Run the server:
     `./http-server`
 
