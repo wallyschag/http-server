@@ -6,35 +6,3 @@ http-server
 
 # Ignore html files
 *.html
-
-# Ignore backup files created by text editors
-*~
-*.bak
-*.swp
-
-# Ignore directory for temporary files (if you use it)
-tmp/
-
-# Ignore log files
-*.log
-
-# Ignore OS-specific files (e.g., macOS .DS_Store)
-.DS_Store
-
-# Ignore the output of the make command (if applicable)
-makefile~
-Makefile
-
-# Ignore debug files
-*.dSYM
-
-# Ignore .vscode directory (if using VSCode)
-.vscode/
-
-# Ignore IDE/project-specific files (e.g., for JetBrains IDEs)
-.idea/
-
-# Ignore other temporary files
-*.tmp
-
->>>>>>> facf1da (Initial commit with project files)
