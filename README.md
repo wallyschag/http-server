@@ -46,5 +46,5 @@ Once the server is running, you can test it by making an HTTP request. You can u
 ## Contributing
 Contributions are welcome! If you want to improve or add features to this project, feel free to fork the repository, create a branch, and submit a pull request.
 
-© 2025 Wallace Schageman
+© 2025 Wally Schageman
   
