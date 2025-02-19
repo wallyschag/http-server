@@ -4,25 +4,7 @@
 
 #include "request-parser.h"
 
-/**
- * @brief Helper function that parses a multiline string into an array of
- * strings.
- *
- * This function takes a string containing multiple lines, splits it into
- * individual lines, and stores each line in a dynamically allocated array of
- * strings. The number of lines is also returned through the `count` parameter.
- *
- * @param input The multiline string to be parsed.
- * @param count Pointer to an integer that will store the number of lines after
- * parsing.
- * @return A dynamically allocated array of strings where each element is a line
- * from the input. The array needs to be freed after use.
- *
- * @note The function uses `strtok` to split the input string by newline
- * characters (`\n`). It dynamically resizes the array of strings as more lines
- * are found. The caller is responsible for freeing the memory allocated for the
- * array and its elements.
- */
+// Helper function to turn a char * into a char ** based on newlines
 char **parse_multiline_string(const char *input, int *count) {
   int size = 10; // Size of the char** array... How many char *s we can hold
 
@@ -77,28 +59,7 @@ char **parse_multiline_string(const char *input, int *count) {
   return multiline_string;
 }
 
-/**
- * @brief Parses a http request and returns an http_request struct.
- *
- * This function takes a char* string that is separated into multiple lines.
- * First this function breaks the string into an array of strings using
- * parse_multiline_string() and then breaks down the first line of the string
- * into a http method (GET, POST, etc), the targeted resource, and the http
- * protocol version. It then saves these variables into a newly allocated
- * http_request struct, and then returns the struct.
- *
- * @param receiving_buffer The http request to be parsed.
- * @return A pointer to a http_request struct that contains the header values
- * parsed in the function.
- *
- * @note The function uses `strtok` to split the first line by space
- * characters (` `). The caller is responsible for freeing the dynamically
- * dynamically allocated http_request struct that is returned.
- *
- * @note Future work is required with regular expressions to save the rest of
- * the headers to the http_request struct. The rest of the headers are not
- * required for this early version but may be necessary later on.
- */
+// Parse the incoming request as a string and return an http_request struct
 struct http_request *parse_request(char *receiving_buffer) {
   // Allocate and error check the http_request object to be returned
   struct http_request *request = malloc(sizeof(struct http_request));

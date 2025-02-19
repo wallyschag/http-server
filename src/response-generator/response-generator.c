@@ -5,21 +5,7 @@
 // Include custom headers for parsing requests and generating responses
 #include "./response-generator.h"
 
-/**
- * @brief Generates an HTTP response based on the HTTP request.
- *
- * This function takes a parsed HTTP request and generates an HTTP response.
- * It handles the "GET" method by attempting to open the requested file and
- * returns a corresponding HTTP status code. If the method is unsupported,
- * it returns a "405 Method Not Allowed" status.
- *
- * @param request A pointer to the HTTP request to process.
- * @return A pointer to an allocated http_response struct containing headers
- * and the target file (if any).
- *
- * @note This function only handles the "GET" method and is set up for future
- * expansion to handle other HTTP methods (e.g., POST, PUT).
- */
+// Generate an http_response struct by parsing a http_request struct
 struct http_response *generate_response(struct http_request *request) {
 
   // Allocate memory for the HTTP response struct
