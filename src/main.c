@@ -21,11 +21,11 @@ void intHandler(int signal) {
   running = 0;
 }
 
-int main(int argc, char *argv[]) {
+int main() {
   // Define server and client file descriptors
   int serverfd, clientfd;
 
-  // Create a TCP server socket based on the previously defined serevr fd
+  // Create a TCP server socket based on the previously defined server fd
   serverfd = socket(AF_INET, SOCK_STREAM, 0);
   if (serverfd == -1) {
     perror("socket");
@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
           // If the server socket is active,
           // Accept connection and create client socket
           // Add client socket to current sockets set
-          clientfd = accept_connection(serverfd);
+          clientfd = accept_connection(i);
           FD_SET(clientfd, &current_sockets);
         } else {
           // The current active socket is a client socket
