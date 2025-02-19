@@ -6,15 +6,18 @@ CFLAGS = -Wall -Wextra -std=c99 -g -D_POSIX_C_SOURCE=200809L
 SRC_DIR = src
 REQUEST_PARSER_DIR = $(SRC_DIR)/request-parser
 RESPONSE_GENERATOR_DIR = $(SRC_DIR)/response-generator
+SERVER_PROCESSING_DIR = $(SRC_DIR)/server-processing
 
 # Source files
 SRC_FILES = $(SRC_DIR)/main.c \
             $(REQUEST_PARSER_DIR)/request-parser.c \
-            $(RESPONSE_GENERATOR_DIR)/response-generator.c
+            $(RESPONSE_GENERATOR_DIR)/response-generator.c \
+						$(SERVER_PROCESSING_DIR)/server-processing.c
 
 # Header files
 HEADERS = $(REQUEST_PARSER_DIR)/request-parser.h \
-          $(RESPONSE_GENERATOR_DIR)/response-generator.h
+          $(RESPONSE_GENERATOR_DIR)/response-generator.h \
+					$(SERVER_PROCESSING_DIR)/server-processing.h
 
 # Output binary
 OUTPUT = http-server
