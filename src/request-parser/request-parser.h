@@ -10,7 +10,7 @@ struct http_request {
   char *method;
   char *request_target;
   char *protocol;
-  // char *content_type; // Future implementation
+  char *content_type;
   // char *user_agent; // Future implementation
   // int content_length; // Future implementation
 };
