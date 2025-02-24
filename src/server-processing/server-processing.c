@@ -1,4 +1,5 @@
 #include <netinet/in.h>
+#include <stdio.h>
 
 #include "../request-parser/request-parser.h"
 #include "../response-generator/response-generator.h"

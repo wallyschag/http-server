@@ -67,155 +67,30 @@ char *find_content_type(char *filename) {
   char *content_type;
   char *ext = strrchr(filename, '.');
 
-  if (strcmp(ext, ".aac") == 0) {
-    content_type = "audio/aac";
-  } else if (strcmp(ext, ".abw") == 0) {
-    content_type = "application/x-abiword";
-  } else if (strcmp(ext, ".apng") == 0) {
-    content_type = "image/apng";
-  } else if (strcmp(ext, ".arc") == 0) {
-    content_type = "application/x-freearc";
-  } else if (strcmp(ext, ".avif") == 0) {
-    content_type = "image/avif";
-  } else if (strcmp(ext, ".avi") == 0) {
-    content_type = "video/x-msvideo";
-  } else if (strcmp(ext, ".azw") == 0) {
-    content_type = "application/vnd.amazon.ebook";
-  } else if (strcmp(ext, ".bin") == 0) {
-    content_type = "application/octet-stream";
-  } else if (strcmp(ext, ".bmp") == 0) {
-    content_type = "image/bmp";
-  } else if (strcmp(ext, ".bz") == 0) {
-    content_type = "application/x-bzip";
-  } else if (strcmp(ext, ".bz2") == 0) {
-    content_type = "application/x-bzip2";
-  } else if (strcmp(ext, ".cda") == 0) {
-    content_type = "application/x-cdf";
-  } else if (strcmp(ext, ".csh") == 0) {
-    content_type = "application/x-csh";
-  } else if (strcmp(ext, ".css") == 0) {
-    content_type = "text/css";
-  } else if (strcmp(ext, ".csv") == 0) {
-    content_type = "text/csv";
-  } else if (strcmp(ext, ".doc") == 0) {
-    content_type = "application/msword";
-  } else if (strcmp(ext, ".docx") == 0) {
-    content_type =
-        "application/"
-        "vnd.openxmlformats-officedocument.wordprocessingml.document";
-  } else if (strcmp(ext, ".eot") == 0) {
-    content_type = "application/vnd.ms-fontobject";
-  } else if (strcmp(ext, ".epub") == 0) {
-    content_type = "application/epub+zip";
-  } else if (strcmp(ext, ".gz") == 0) {
-    content_type = "application/gzip";
+  if (strcmp(ext, ".css") == 0) {
+    content_type = "text/css\t\n\r\n";
   } else if (strcmp(ext, ".gif") == 0) {
-    content_type = "image/gif";
+    content_type = "image/gif\t\n\r\n";
   } else if (strcmp(ext, ".html") == 0 || strcmp(ext, ".htm") == 0) {
-    content_type = "text/html";
-  } else if (strcmp(ext, ".ico") == 0) {
-    content_type = "image/vnd.microsoft.icon";
-  } else if (strcmp(ext, ".ics") == 0) {
-    content_type = "text/calendar";
-  } else if (strcmp(ext, ".jar") == 0) {
-    content_type = "application/java-archive";
-  } else if (strcmp(ext, ".jpeg") == 0 || strcmp(ext, "jpg") == 0) {
-    content_type = "image/jpeg";
+    content_type = "text/html\t\n\r\n";
+  } else if (strcmp(ext, ".jpg") == 0 || strcmp(ext, ".jpeg") == 0) {
+    content_type = "image/jpeg\t\n\r\n";
   } else if (strcmp(ext, ".js") == 0) {
-    content_type = "text/javascript";
+    content_type = "text/javascript\t\n\r\n";
   } else if (strcmp(ext, ".json") == 0) {
-    content_type = "application/json";
-  } else if (strcmp(ext, ".jsonld") == 0) {
-    content_type = "application/ld+json";
-  } else if (strcmp(ext, ".mid") == 0 || strcmp(ext, ".midi") == 0) {
-    content_type = "audio/midi";
-  } else if (strcmp(ext, ".mp3") == 0) {
-    content_type = "audio/mpeg";
-  } else if (strcmp(ext, ".mp4") == 0) {
-    content_type = "video/mp4";
-  } else if (strcmp(ext, ".mpeg") == 0) {
-    content_type = "video/mpeg";
-  } else if (strcmp(ext, ".mpkg") == 0) {
-    content_type = "application/vnd.apple.installer+xml";
-  } else if (strcmp(ext, ".odp") == 0) {
-    content_type = "application/vnd.oasis.opendocument.presentation";
-  } else if (strcmp(ext, ".ods") == 0) {
-    content_type = "application/vnd.oasis.opendocument.spreadsheet";
-  } else if (strcmp(ext, ".odt") == 0) {
-    content_type = "application/vnd.oasis.opendocument.text";
-  } else if (strcmp(ext, ".oga") == 0) {
-    content_type = "audio/ogg";
-  } else if (strcmp(ext, ".ogx") == 0) {
-    content_type = "application/ogg";
-  } else if (strcmp(ext, ".opus") == 0) {
-    content_type = "audio/ogg";
-  } else if (strcmp(ext, ".otf") == 0) {
-    content_type = "font/otf";
+    content_type = "application/json\t\n\r\n";
   } else if (strcmp(ext, ".png") == 0) {
-    content_type = "image/png";
+    content_type = "image/png\t\n\r\n";
   } else if (strcmp(ext, ".pdf") == 0) {
-    content_type = "application/pdf";
+    content_type = "application/pdf\t\n\r\n";
   } else if (strcmp(ext, ".php") == 0) {
-    content_type = "application/x-httpd-php";
-  } else if (strcmp(ext, ".ppt") == 0) {
-    content_type = "application/vnd.ms-powerpoint";
-  } else if (strcmp(ext, ".pptx") == 0) {
-    content_type =
-        "application/"
-        "vnd.openxmlformats-officedocument.presentationml.presentation";
-  } else if (strcmp(ext, ".rar") == 0) {
-    content_type = "application/vnd.rar";
-  } else if (strcmp(ext, ".rtf") == 0) {
-    content_type = "application/rtf";
-  } else if (strcmp(ext, ".sh") == 0) {
-    content_type = "application/x-sh";
-  } else if (strcmp(ext, ".svg") == 0) {
-    content_type = "image/svg+xml";
-  } else if (strcmp(ext, ".tar") == 0) {
-    content_type = "application/x-tar";
-  } else if (strcmp(ext, ".tif") == 0 || strcmp(ext, ".tiff")) {
-    content_type = "image/tiff";
-  } else if (strcmp(ext, ".ts") == 0) {
-    content_type = "video/mp2t";
-  } else if (strcmp(ext, ".ttf") == 0) {
-    content_type = "font/ttf";
+    content_type = "application/x-httpd-php\t\n\r\n";
   } else if (strcmp(ext, ".txt") == 0) {
-    content_type = "text/plain";
-  } else if (strcmp(ext, ".vsd") == 0) {
-    content_type = "application/vnd.visio";
-  } else if (strcmp(ext, ".wav") == 0) {
-    content_type = "audio/wav";
-  } else if (strcmp(ext, ".weba") == 0) {
-    content_type = "audio/webm";
-  } else if (strcmp(ext, ".webm") == 0) {
-    content_type = "video/webm";
-  } else if (strcmp(ext, ".webp") == 0) {
-    content_type = "image/webp";
-  } else if (strcmp(ext, ".woff") == 0) {
-    content_type = "font/woff";
-  } else if (strcmp(ext, ".woff2") == 0) {
-    content_type = "font/woff2";
-  } else if (strcmp(ext, ".xhtml") == 0) {
-    content_type = "application/xhtml+xml";
-  } else if (strcmp(ext, ".xls") == 0) {
-    content_type = "application/vnd.ms-excel";
-  } else if (strcmp(ext, ".xlsx") == 0) {
-    content_type =
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    content_type = "text/plain\t\n\r\n";
   } else if (strcmp(ext, ".xml") == 0) {
-    content_type = "application/xml";
-  } else if (strcmp(ext, ".xul") == 0) {
-    content_type = "application/vnd.mozilla.xul+xml";
-  } else if (strcmp(ext, ".zip") == 0) {
-    content_type = "application/zip";
-  } else if (strcmp(ext, ".3gp") == 0) {
-    content_type = "video/3gpp";
-  } else if (strcmp(ext, ".3g2") == 0) {
-    content_type = "video/3gpp2";
-  } else if (strcmp(ext, ".7z") == 0) {
-    content_type = "application/x-7z-compressed";
+    content_type = "application/xml\t\n\r\n";
   } else {
-    content_type = "application/octet-stream";
+    content_type = "application/octet-stream\t\n\r\n";
   }
 
   return content_type;
@@ -246,7 +121,7 @@ struct http_request *parse_request(char *receiving_buffer) {
       request->method = token;
     } else if (token_count == 1) {
       request->request_target = token;
-      // TODO: Set the content-type here
+      request->content_type = find_content_type(token);
     } else {
       request->protocol = token;
     }

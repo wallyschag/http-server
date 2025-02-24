@@ -15,6 +15,10 @@ struct http_response *generate_response(struct http_request *request) {
     exit(1);
   }
 
+  char header_buf[1000];
+  response->headers = header_buf;
+  header_buf[0] = '\0';
+
   // Check if the request method is "GET"
   if (!strcmp(request->method, "GET")) {
     // Adjust the request target (remove leading '/' for file path)
@@ -24,19 +28,24 @@ struct http_response *generate_response(struct http_request *request) {
     FILE *file = fopen(request->request_target, "r");
     if (!file) { // If the file is not found
       // Set response headers to 404 Not Found and no file to send
-      response->headers = "HTTP/1.1 404 Not Found\r\n"
-                          "Content-Type: text/html\t\n\r\n";
+      snprintf(header_buf, sizeof(header_buf),
+               "HTTP/1.1 404 Not Found\r\n"
+               "Content-Type: text/html\t\n\r\n");
+
       response->target_file = NULL;
     } else {
       // If the file exists, set response headers to 200 OK and send the file
-      response->headers = "HTTP/1.1 200 OK\r\n"
-                          "Content-Type: text/html\t\n\r\n";
+      snprintf(header_buf, sizeof(header_buf),
+               "HTTP/1.1 200 OK\r\n"
+               "Content-Type: %s",
+               request->content_type);
       response->target_file = file;
     }
   } else { // If the method is not "GET"
-    // Set response headers to 405 Method Not Allowed
-    response->headers = "HTTP/1.1 405 Method Not Allowed\r\n"
-                        "Content-Type: text/html\t\n\r\n";
+           // Set response headers to 405 Method Not Allowed
+    snprintf(
+        header_buf, sizeof(header_buf),
+        "HTTP/1.1 405 Method Not Allowed\r\nContent-Type: text/html\t\n\r\n");
     response->target_file = NULL; // No file to send
   }
 
