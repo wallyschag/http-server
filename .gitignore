@@ -4,8 +4,5 @@
 # Ignore compiled binary files
 http-server
 
-# Ignore html files
-*.html
-
 #ignore server objects
 server-objects/
