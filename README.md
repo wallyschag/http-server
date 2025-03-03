@@ -2,6 +2,11 @@
 
 Welcome to my HTTP Server project! This project implements a basic HTTP server written in C that can receive HTTP requests from clients, parse them, generate a response, and send it back to the client. The server supports handling static file responses and dynamically parses incoming requests.
 
+## WARNING
+This project is not yet intended to be run on the open internet. Please keep all testing and usage to https://localhost:8080. This project contains many unresolved security vulnerabilities. Do not use this server application on the internet.\
+
+**YOU HAVE BEEN WARNED**
+
 ## Table of Contents
 
 - [Introduction](#introduction)
