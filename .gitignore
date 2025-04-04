@@ -5,4 +5,7 @@
 http-server
 
 #ignore server objects
-server-objects/
+index.html
+
+#ignore log files
+log.txt

@@ -7,17 +7,20 @@ SRC_DIR = src
 REQUEST_PARSER_DIR = $(SRC_DIR)/request-parser
 RESPONSE_GENERATOR_DIR = $(SRC_DIR)/response-generator
 SERVER_PROCESSING_DIR = $(SRC_DIR)/server-processing
+LOGGER_DIR = $(SRC_DIR)/logger
 
 # Source files
 SRC_FILES = $(SRC_DIR)/main.c \
             $(REQUEST_PARSER_DIR)/request-parser.c \
             $(RESPONSE_GENERATOR_DIR)/response-generator.c \
-						$(SERVER_PROCESSING_DIR)/server-processing.c
+						$(SERVER_PROCESSING_DIR)/server-processing.c \
+						$(LOGGER_DIR)/logger.c
 
 # Header files
 HEADERS = $(REQUEST_PARSER_DIR)/request-parser.h \
           $(RESPONSE_GENERATOR_DIR)/response-generator.h \
-					$(SERVER_PROCESSING_DIR)/server-processing.h
+					$(SERVER_PROCESSING_DIR)/server-processing.h \
+					$(LOGGER_DIR)/logger.h
 
 # Output binary
 OUTPUT = http-server

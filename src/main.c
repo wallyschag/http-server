@@ -2,16 +2,14 @@
 #include <bits/types/struct_timeval.h> // Handle timeval functionality for select
 #include <signal.h>                    // For signal handling
 #include <stdio.h>                     // For standard input/output operations
-#include <stdlib.h>     // For memory allocation and exit functions
-#include <string.h>     // For string manipulation functions
-#include <sys/select.h> // Used for select concurrency
-#include <sys/socket.h> // For socket functions
-#include <sys/types.h>  // For types used in socket programming
-#include <unistd.h>     // For close() function
+#include <sys/select.h>                // Used for select concurrency
+#include <sys/socket.h>                // For socket functions
+#include <sys/types.h>                 // For types used in socket programming
+#include <unistd.h>                    // For close() function
 
+#include "logger/logger.h" //System logging. Log everything to log.txt
 #include "server-processing/server-processing.h" // Include custom server processing functions
-
-#define PORT 8080 // Define port here
+#define PORT 8080                                // Define port here
 
 // Main loop boolean and Signal handling function for interrupts
 // Sets boolean to false upon interrupt to close cleanly
@@ -22,6 +20,7 @@ void intHandler(int signal) {
 }
 
 int main() {
+  log_message("Server initialized.");
   // Define server and client file descriptors
   int serverfd, clientfd;
 
@@ -31,6 +30,8 @@ int main() {
     perror("socket");
     return 1;
   }
+
+  log_message("Socket Created.");
 
   // Define server address structure
   struct sockaddr_in server_addr;
@@ -43,6 +44,8 @@ int main() {
     perror("bind");
     return 1;
   }
+
+  log_message("Socket bound to port.");
 
   // Listen for incoming connections on server socket
   if (listen(serverfd, 5) == -1) {
