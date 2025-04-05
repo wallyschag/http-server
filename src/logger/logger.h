@@ -4,6 +4,6 @@
 #include <stdio.h>
 #include <time.h>
 
-void log_message(char *message);
+void log_message(char *message, ...);
 
 #endif // !LOGGER_H

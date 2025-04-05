@@ -20,6 +20,7 @@ void intHandler(int signal) {
 }
 
 int main() {
+  log_message("################################################");
   log_message("Server initialized.");
   // Define server and client file descriptors
   int serverfd, clientfd;
@@ -31,7 +32,7 @@ int main() {
     return 1;
   }
 
-  log_message("Socket Created.");
+  log_message("Server Socket #%d created.", serverfd);
 
   // Define server address structure
   struct sockaddr_in server_addr;
@@ -45,13 +46,14 @@ int main() {
     return 1;
   }
 
-  log_message("Socket bound to port.");
+  log_message("Server socket #%d bound to port %d.", serverfd, PORT);
 
   // Listen for incoming connections on server socket
   if (listen(serverfd, 5) == -1) {
     perror("listen");
     return 1;
   }
+  log_message("Serevr listening on port %d", PORT);
 
   // Bind the interrupt signal with the interrupt handler function defined above
   // main
@@ -102,5 +104,7 @@ int main() {
 
   // Close server socket and close
   close(serverfd);
+  log_message("Server socket #%d closed.", serverfd);
+  log_message("Server operations aborted. Closing...");
   return 0;
 }

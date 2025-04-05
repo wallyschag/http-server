@@ -1,6 +1,8 @@
+#include <arpa/inet.h>
 #include <netinet/in.h>
 #include <stdio.h>
 
+#include "../logger/logger.h"
 #include "../request-parser/request-parser.h"
 #include "../response-generator/response-generator.h"
 #include "server-processing.h"
@@ -20,6 +22,12 @@ int accept_connection(int serverfd) {
     perror("accept");
     exit(1);
   }
+
+  char client_ip_string[64];
+  inet_ntop(AF_INET, &(client_addr.sin_addr), client_ip_string,
+            sizeof(client_ip_string));
+  log_message("Connection accepted on client socket #%d from %s", clientfd,
+              client_ip_string);
   return clientfd;
 }
 
@@ -40,6 +48,9 @@ int process_connection(int clientfd) {
     return 1;
   }
 
+  log_message("Recieved %d bytes on socket %d", bytes_received, clientfd);
+  log_message("Request received:\n%s", receiving_buffer);
+
   // Parse the receiving buffer and create a http_request struct
   struct http_request *request = parse_request(receiving_buffer);
 
@@ -53,16 +64,22 @@ int process_connection(int clientfd) {
     return 1;
   }
 
+  log_message("Sent response headers from server on client sokcet #%d\n%s",
+              clientfd, response->headers);
+
   // If the requested file exists, send the file
   if (response->target_file != NULL) {
+    log_message("Sending payload to client.");
     while ((bytes_sent = fread(sending_buffer, 1, BUF_SIZE,
                                response->target_file)) > 0) {
+      log_message("%d payload bytes successfully sent to client.", bytes_sent);
       send(clientfd, sending_buffer, bytes_sent, 0);
     }
     fclose(response->target_file);
   }
 
   // Close client socket
+  log_message("Closing client socket #%d", clientfd);
   close(clientfd);
 
   // Free dynamically allocated structs
