@@ -21,18 +21,19 @@ void intHandler(int signal) {
 
 int main() {
   log_message("################################################");
-  log_message("Server initialized.");
+  log_message("Server initialized");
   // Define server and client file descriptors
   int serverfd, clientfd;
 
   // Create a TCP server socket based on the previously defined server fd
   serverfd = socket(AF_INET, SOCK_STREAM, 0);
   if (serverfd == -1) {
+    log_message("Server socket creation failed. Aborting...");
     perror("socket");
     return 1;
   }
 
-  log_message("Server Socket #%d created.", serverfd);
+  log_message("Server socket created", serverfd);
 
   // Define server address structure
   struct sockaddr_in server_addr;
@@ -42,18 +43,22 @@ int main() {
 
   // Bind server socket to server address structure
   if (bind(serverfd, (struct sockaddr *)&server_addr, sizeof(server_addr))) {
+    log_message("Bind failed. Aborting...");
     perror("bind");
     return 1;
   }
 
-  log_message("Server socket #%d bound to port %d.", serverfd, PORT);
+  log_message("Server socket bound to port %d", serverfd, PORT);
 
   // Listen for incoming connections on server socket
   if (listen(serverfd, 5) == -1) {
+    log_message("Listen failed. Aborting...");
     perror("listen");
     return 1;
   }
-  log_message("Serevr listening on port %d", PORT);
+  log_message(
+      "Server socket is now listening on port %d for incoming connections",
+      serverfd, PORT);
 
   // Bind the interrupt signal with the interrupt handler function defined above
   // main
@@ -69,11 +74,13 @@ int main() {
   // Main server while loop
   // running gets set to false if an interrupt (ctrl + c) gets detected
   while (running) {
+    log_message("Core server loop starting");
     // Copy the current sockets to the ready sockets
     ready_sockets = current_sockets;
 
     // Select active sockets in the ready sockets set
     if (select(FD_SETSIZE, &ready_sockets, NULL, NULL, &timeout) < 0) {
+      log_message("Select failed. Aborting...");
       perror("select");
       return 1;
     }
@@ -92,7 +99,7 @@ int main() {
           // Process connection -> Parse and send response
           // Remove current socket from current sockets
           if (process_connection(i) == 1) {
-            printf("Error in processing the connection.");
+            log_message("Error in processing connection. Aborting...");
             close(serverfd);
             return 1;
           }
@@ -104,7 +111,7 @@ int main() {
 
   // Close server socket and close
   close(serverfd);
-  log_message("Server socket #%d closed.", serverfd);
-  log_message("Server operations aborted. Closing...");
+  log_message("Server socket closed", serverfd);
+  log_message("Server operations finished. Aborting...");
   return 0;
 }

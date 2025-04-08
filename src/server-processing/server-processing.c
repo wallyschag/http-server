@@ -52,12 +52,17 @@ int process_connection(int clientfd) {
   log_message("Request received:\n%s", receiving_buffer);
 
   // Parse the receiving buffer and create a http_request struct
+  log_message("Parsing request...");
   struct http_request *request = parse_request(receiving_buffer);
+  log_message("Request parsed!");
 
   // Create an http_response struct based on the http_request struct
+  log_message("Generating response based on parsed request content...");
   struct http_response *response = generate_response(request);
+  log_message("Response generated!");
 
   // Send necessary headers to the client. Included in http_response sttuct;
+  log_message("Sending response headers...");
   if (send(clientfd, response->headers, strlen(response->headers), 0) < 0) {
     perror("send");
     close(clientfd);
@@ -68,6 +73,7 @@ int process_connection(int clientfd) {
               clientfd, response->headers);
 
   // If the requested file exists, send the file
+  log_message("Payload object requested by client: %s", response->target_file);
   if (response->target_file != NULL) {
     log_message("Sending payload to client.");
     while ((bytes_sent = fread(sending_buffer, 1, BUF_SIZE,

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../logger/logger.h"
 #include "request-parser.h"
 
 // Helper function to turn a char * into a char ** based on newlines
